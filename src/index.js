@@ -36,7 +36,11 @@ function onSuccess(data) {
 }
 
 function onError(err) {
-  Notiflix.Notify.failure('Oops, there is no country with that name');
+  if (err.message === 'Not Found') {
+    Notiflix.Notify.failure('Oops, there is no country with that name');
+  } else {
+    Notiflix.Notify.failure(err.message);
+  }
 }
 
 function createMarkupList(arr) {
